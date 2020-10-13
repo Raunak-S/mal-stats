@@ -16,5 +16,5 @@ mal-stats is a website that displays information about a MyAnimeList user.
 
 ## Features
 
-- [] Display Basic Profile Statistics
-- [] Infi-Scroll Banner of Favorites (Anime, Manga, People)
+- [ ] Display Basic Profile Statistics
+- [ ] Infi-Scroll Banner of Favorites (Anime, Manga, People)
