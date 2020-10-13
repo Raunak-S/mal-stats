@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import Link from "next/link";
+import React, { useState, Component } from "react";
 import Head from "next/head";
 import Layout from "../components/layout";
 import styled from "styled-components";
+import Router from 'next/router';
 
 const CoolContainer = styled.div`
     width: 300px;
@@ -23,6 +23,10 @@ const CoolContainer = styled.div`
 `;
 
 export default function Home() {
+    const [username, setUsername] = useState("");
+    const handleChange = e => setUsername(e.target.value);
+
+
     return ( 
         <main>
             <Head>
@@ -30,8 +34,18 @@ export default function Home() {
             </Head>
             <CoolContainer>
             <Layout>
+            <form
+                onSubmit={e => {
+                    e.preventDefault();
+                    console.log(username);
+                    Router.push({
+                        pathname: 'home',
+                        query: { id: username }
+                    });
+                }}>
                 <h1>Anime-ted</h1>
-                <input type="text" name="username"></input>
+                <input type="text" name="username" autoComplete="off" onChange={handleChange} />
+            </form>
             </Layout>
             </CoolContainer>
         </main>
