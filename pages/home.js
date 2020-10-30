@@ -8,7 +8,12 @@ import Layout from "../components/layout";
 const Home = props => {
   
   const [userData, setUserData] = useState(null);
-  const username = props.url.query.id;
+  const router = useRouter();
+  const uname = router.query.postId;
+  console.log(uname);
+  console.log("fjfj")
+  const username = null;
+
   // const router = useRouter();
   // const username = router.query.id;
   //console.log(router.query)
