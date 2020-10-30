@@ -12,7 +12,7 @@ mal-stats is a website that displays information about a MyAnimeList user.
 ## Usage
 
 1. Navigate to `localhost:3000` in your preferred webbrowser.
-2. Type any MyAnimstList username to find to display the profile's statistics.
+2. Type any MyAnimeList username to find to display the profile's statistics.
 
 ## Features
 
