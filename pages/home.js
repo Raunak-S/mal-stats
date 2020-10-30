@@ -5,14 +5,10 @@ import Link from "next/link";
 import Head from "next/head";
 import Layout from "../components/layout";
 
-const Home = props => {
+const Home = (props) => {
   
   const [userData, setUserData] = useState(null);
-  const router = useRouter();
-  const uname = router.query.postId;
-  console.log(uname);
-  console.log("fjfj")
-  const username = null;
+  const username = props.data.id;
 
   // const router = useRouter();
   // const username = router.query.id;
@@ -31,7 +27,6 @@ const Home = props => {
   }
 
   useEffect(() => {
-    const username = props.url.query.id;
     getUserData(username);
 
   }, []);
@@ -52,6 +47,14 @@ const Home = props => {
     )
   }
 }
+
+export async function getServerSideProps(context) {
+  const data = context.query;
+  return {
+    props: {data}, // will be passed to the page component as props
+  }
+}
+
 
 
 Home.propTypes = {
