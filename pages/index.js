@@ -37,7 +37,6 @@ export default function Home() {
             <form
                 onSubmit={e => {
                     e.preventDefault();
-                    console.log(username);
                     Router.push({
                         pathname: 'home',
                         query: { id: username }
