@@ -4,14 +4,19 @@ import Layout from "../components/layout";
 import styled from "styled-components";
 import Router from 'next/router';
 
+
+
+
 const CoolContainer = styled.div`
-    width: 300px;
-    height: 100px;
-    padding: 20px;
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    margin: -70px 0 0 -170px;
+    display: flex;
+    justify-context: center;
+    align-items: center;
+    margin: 0px;
+    height: 100vh;
+    background-size: cover;
+    color: #0033FF;
+    background-color: #0033FF;
+    background-image: linear-gradient(black 0%, #24292e 100%);
 
     input {
         padding: 12px 20px;
@@ -21,6 +26,8 @@ const CoolContainer = styled.div`
         border-radius: 4px;
     }
 `;
+
+
 
 export default function Home() {
     const [username, setUsername] = useState("");
