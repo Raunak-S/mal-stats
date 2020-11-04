@@ -4,19 +4,13 @@ import Layout from "../components/layout";
 import styled from "styled-components";
 import Router from 'next/router';
 
-
-
-
 const CoolContainer = styled.div`
     display: flex;
     justify-context: center;
     align-items: center;
-    margin: 0px;
     height: 100vh;
-    background-size: cover;
-    color: #0033FF;
-    background-color: #0033FF;
-    background-image: linear-gradient(black 0%, #24292e 100%);
+    color: white;
+    background-image: linear-gradient(rgb(26, 30, 34) 0%, #5a79c1 100%);
 
     input {
         padding: 12px 20px;
@@ -28,14 +22,13 @@ const CoolContainer = styled.div`
 `;
 
 
-
 export default function Home() {
     const [username, setUsername] = useState("");
     const handleChange = e => setUsername(e.target.value);
 
 
     return ( 
-        <main>
+        <div>
             <Head>
                 <title>Homepage</title>
             </Head>
@@ -54,6 +47,18 @@ export default function Home() {
             </form>
             </Layout>
             </CoolContainer>
-        </main>
+        <style global jsx>{`
+            html,
+            body,
+            body > div:first-child,
+            div#__next,
+            div#__next > div,
+            div#__next > div > div {
+            height: 100%;
+            margin: 0px;
+            }
+        `}</style>
+        </div>
+        
     );
 }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Router, { useRouter } from 'next/router';
 import Link from "next/link";
 import Head from "next/head";
+import BasicInfo from "../components/basicinfo"
 import Layout from "../components/layout";
 
 const Home = (props) => {
@@ -22,7 +23,10 @@ const Home = (props) => {
         .then(res => {
           return res.json();
         })
-        .then(json => setUserData(json));
+        .then(json => {
+          setUserData(json);
+          console.log(json);
+        });
     }
   }
 
@@ -40,9 +44,7 @@ const Home = (props) => {
         <Head>
           <title>Anime-ted | {username}</title>
         </Head>
-      <div>Debug: {username}</div>
-        <pre>{JSON.stringify(userData, null, '\t')}</pre> 
-    { userData && username && <Layout>Joined: {new Date(userData.joined).toString()}</Layout> }
+        <BasicInfo userData={userData}></BasicInfo>
       </main>
     )
   }
