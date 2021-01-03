@@ -9,11 +9,12 @@ import Layout from "../components/layout";
 const Home = (props) => {
   
   const [userData, setUserData] = useState(null);
+  const [animeData, setAnimeData] = useState(null);
   const username = props.data.id;
 
   // const router = useRouter();
   // const username = router.query.id;
-  //console.log(router.query)
+  // console.log(router.query)
 
   const getUserData = (username) => {
     if (username === undefined) {
@@ -27,6 +28,12 @@ const Home = (props) => {
           setUserData(json);
           console.log(json);
         });
+      fetch(`https://api.jikan.moe/v3/user/${username}/animelist`)
+      .then(res => res.json())
+      .then(json => {
+        setAnimeData(json);
+        console.log(json);
+      })
     }
   }
 
