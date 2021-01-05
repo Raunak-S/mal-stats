@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useEffect, useRef} from "react";
 import Layout from "../components/layout"
 import styled from "styled-components";
+import ChartWrapper from "./chart"
 
 // about
 // anime_stats
@@ -23,8 +24,14 @@ userData Prototype
 
 const StyledContainer = styled.div`
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+
+	div.username {
+		font-size: 2rem;
+		font-weight: bold;
+	}
 `
 const AboutContainer = styled.div`
 	width: 800px;
@@ -36,28 +43,33 @@ const AboutContainer = styled.div`
 	text-align: center;
 `
 
+const ChartContainer = styled.div`
+	display: flex;
+	flex-direction: row
+`
+
 const BasicInfo = ({userData}) => {
 
   const username = userData.username;
   const imageURL = userData.image_url ? userData.image_url : 'https://cdn.myanimelist.net/r/76x120/images/questionmark_50.gif?s=8e0400788aa6af2a2f569649493e2b0f';
+  const animeData = userData.anime_stats;
 
   return (
-	<main>
-		<StyledContainer>
-			<img src={imageURL} />
-		</StyledContainer>
-		<StyledContainer>
-			<div>{username}</div>
-		</StyledContainer>
+	<StyledContainer>
+		<img className='pfp' src={imageURL} />
+		<div className='username'>{username}</div>
+		<div className='joined'>Joined: {new Date(userData.joined).toString()}</div>
+		<div className='lastonline'>Last Online: {new Date(userData.last_online).toString()}</div>
 	{	userData && username && 
 	  	<AboutContainer>
-			Joined: {new Date(userData.joined).toString()}
-			<br />
 			About: 
 			<div dangerouslySetInnerHTML={{__html: userData.about}} />
 		</AboutContainer>   
 	}
-	</main>
+	<ChartContainer>
+	<ChartWrapper animeData={animeData}/>
+	</ChartContainer>
+	</StyledContainer>
   )
 }
 

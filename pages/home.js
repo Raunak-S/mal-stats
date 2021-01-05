@@ -1,6 +1,5 @@
 import React, { useState, useEffect, Component } from "react";
 import PropTypes from 'prop-types';
-import Router, { useRouter } from 'next/router';
 import Link from "next/link";
 import Head from "next/head";
 import BasicInfo from "../components/basicinfo"
@@ -51,6 +50,9 @@ const Home = (props) => {
         <Head>
           <title>Anime-ted | {username}</title>
         </Head>
+        <Link href='/'>
+          <a>Find another user</a>
+        </Link>
         <BasicInfo userData={userData}></BasicInfo>
       </main>
     )
@@ -64,10 +66,5 @@ export async function getServerSideProps(context) {
   }
 }
 
-
-
-Home.propTypes = {
-  query: PropTypes.objects,
-};
 
 export default Home;

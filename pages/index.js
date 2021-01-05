@@ -1,8 +1,15 @@
-import React, { useState, Component } from "react";
+import React, { useState, Component, useEffect } from "react";
 import Head from "next/head";
 import Layout from "../components/layout";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import Router from 'next/router';
+
+const GlobalStyle = createGlobalStyle`
+    body {
+        height: 100%;
+        margin: 0px;
+    }
+`
 
 const CoolContainer = styled.div`
     display: flex;
@@ -10,27 +17,43 @@ const CoolContainer = styled.div`
     align-items: center;
     height: 100vh;
     color: black;
-    background-image: linear-gradient(rgb(26, 30, 34) 0%, #5a79c1 100%);
+    background-color: #2980b9;
     font-family: 'Bangers';
+    flex-direction: column;
+
+    div {
+        font-size: 3rem;
+    }
+
+    label {
+        color: white;
+        font-size: 3rem;
+        padding: 0 1rem;
+        margin: 2rem;
+        display: block;
+    }
 
     input {
         padding: 12px 20px;
         margin: 8px 0;
         box-sizing: border-box;
-        border: 2px solid red;
         border-radius: 4px;
+        border: 0px;
+        background-color: #3498db;
+        text-align: center;
     }
-`;
+`
 
+// TODO: Create quote component for random anime quote (have links for character and anime)
 
-// TODO: Integrate anime_acc_bb font into the user input box
-
-export default function Home() {
+export default function Home({quote, character, anime}) {
     const [username, setUsername] = useState("");
     const handleChange = e => setUsername(e.target.value);
 
-    return ( 
-        <div>
+    return (
+        <>
+        <GlobalStyle />
+        <main>
             <Head>
                 <title>Homepage</title>
                 <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -46,23 +69,35 @@ export default function Home() {
                         query: { id: username }
                     });
                 }}>
-                <h1>Anime-ted</h1>
+                <label htmlFor='username'>Enter Your MyAnimeList Username</label>
                 <input type="text" name="username" autoComplete="off" onChange={handleChange} />
             </form>
             </Layout>
+            <div>{anime + ': ' + quote + ' - ' + character}</div>
             </CoolContainer>
-        <style global jsx>{`
-            html,
-            body,
-            body > div:first-child,
-            div#__next,
-            div#__next > div,
-            div#__next > div > div {
-            height: 100%;
-            margin: 0px;
-            }
-        `}</style>
-        </div>
-        
+        </main>
+        </>
     );
+}
+
+export async function getStaticProps() {
+    const data = await fetch(`https://animechanapi.xyz/api/quotes/random`)
+    .then(res => {
+        return res.json();
+    })
+    .then(json => {
+        return json.data[0];
+    })
+
+    const quote = data.quote;
+    const character = data.character;
+    const anime = data.anime;
+
+    return {
+        props: {
+            quote,
+            character,
+            anime
+        },
+    }
 }
