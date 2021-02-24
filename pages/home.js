@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Link from "next/link";
 import Head from "next/head";
 import BasicInfo from "../components/basicinfo"
-import Layout from "../components/layout";
+import Layout from "../components/Layout";
 
 const Home = (props) => {
   

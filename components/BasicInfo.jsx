@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from "react";
-import Layout from "../components/layout"
+import Layout from "./Layout"
 import styled from "styled-components";
-import ChartWrapper from "./chart"
+import ChartWrapper from "./ChartWrapper"
 
 // about
 // anime_stats
@@ -15,6 +15,7 @@ userData Prototype
 {
 	about: string,
 	anime_stats: anime_stats object,
+	manga_stats: manga_stats object,
 	image_url: string,
 	joined: string,
 	last_online: string,
@@ -43,32 +44,23 @@ const AboutContainer = styled.div`
 	text-align: center;
 `
 
-const ChartContainer = styled.div`
-	display: flex;
-	flex-direction: row
-`
-
 const BasicInfo = ({userData}) => {
 
-  const username = userData.username;
   const imageURL = userData.image_url ? userData.image_url : 'https://cdn.myanimelist.net/r/76x120/images/questionmark_50.gif?s=8e0400788aa6af2a2f569649493e2b0f';
-  const animeData = userData.anime_stats;
 
   return (
 	<StyledContainer>
 		<img className='pfp' src={imageURL} />
-		<div className='username'>{username}</div>
+		<div className='username'>{userData.username}</div>
 		<div className='joined'>Joined: {new Date(userData.joined).toString()}</div>
 		<div className='lastonline'>Last Online: {new Date(userData.last_online).toString()}</div>
-	{	userData && username && 
+	{	userData && userData.about && 
 	  	<AboutContainer>
 			About: 
 			<div dangerouslySetInnerHTML={{__html: userData.about}} />
 		</AboutContainer>   
 	}
-	<ChartContainer>
-	<ChartWrapper animeData={animeData}/>
-	</ChartContainer>
+	<ChartWrapper animeData={userData.anime_stats} mangaData={userData.manga_stats} />
 	</StyledContainer>
   )
 }

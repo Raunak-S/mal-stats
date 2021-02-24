@@ -1,6 +1,6 @@
 import React, { useState, Component, useEffect } from "react";
 import Head from "next/head";
-import Layout from "../components/layout";
+import Layout from "../components/Layout";
 import styled, { createGlobalStyle } from "styled-components";
 import Router from 'next/router';
 
@@ -46,7 +46,7 @@ const CoolContainer = styled.div`
 
 // TODO: Create quote component for random anime quote (have links for character and anime)
 
-export default function Home({quote, character, anime}) {
+export default function Home({animeData}) {
     const [username, setUsername] = useState("");
     const handleChange = e => setUsername(e.target.value);
 
@@ -73,7 +73,7 @@ export default function Home({quote, character, anime}) {
                 <input type="text" name="username" autoComplete="off" onChange={handleChange} />
             </form>
             </Layout>
-            <div>{anime + ': ' + quote + ' - ' + character}</div>
+            <div>{animeData.anime + ': ' + animeData.quote + ' - ' + animeData.character}</div>
             </CoolContainer>
         </main>
         </>
@@ -81,7 +81,7 @@ export default function Home({quote, character, anime}) {
 }
 
 export async function getStaticProps() {
-    const data = await fetch(`https://animechanapi.xyz/api/quotes/random`)
+    const animeData = await fetch(`https://animechanapi.xyz/api/quotes/random`)
     .then(res => {
         return res.json();
     })
@@ -89,15 +89,7 @@ export async function getStaticProps() {
         return json.data[0];
     })
 
-    const quote = data.quote;
-    const character = data.character;
-    const anime = data.anime;
-
     return {
-        props: {
-            quote,
-            character,
-            anime
-        },
+        props: { animeData },
     }
 }
