@@ -44,10 +44,10 @@ const AboutContainer = styled.div`
 	text-align: center;
 `
 
-const BasicInfo = ({userData}) => {
+const BasicInfo = ({userData, animeData}) => {
 
-  const imageURL = userData.image_url ? userData.image_url : 'https://cdn.myanimelist.net/r/76x120/images/questionmark_50.gif?s=8e0400788aa6af2a2f569649493e2b0f';
-
+  const imageURL = userData.images.jpg.image_url ? userData.images.jpg.image_url : 'https://cdn.myanimelist.net/r/76x120/images/questionmark_50.gif?s=8e0400788aa6af2a2f569649493e2b0f';
+	
   return (
 	<StyledContainer>
 		<img className='pfp' src={imageURL} />
@@ -60,7 +60,7 @@ const BasicInfo = ({userData}) => {
 			<div dangerouslySetInnerHTML={{__html: userData.about}} />
 		</AboutContainer>   
 	}
-	<ChartWrapper animeData={userData.anime_stats} mangaData={userData.manga_stats} />
+	<ChartWrapper animeData={animeData.anime} mangaData={animeData.manga} />
 	</StyledContainer>
   )
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect, Component } from "react";
 import PropTypes from 'prop-types';
 import Link from "next/link";
 import Head from "next/head";
-import BasicInfo from "../components/basicinfo"
+import BasicInfo from "../components/BasicInfo"
 import Layout from "../components/Layout";
 
 const Home = (props) => {
@@ -19,7 +19,7 @@ const Home = (props) => {
     if (username === undefined) {
       setUserData(null);
     } else {
-      fetch(`https://api.jikan.moe/v3/user/${username}`)
+      fetch(`https://api.jikan.moe/v4/users/${username}`)
         .then(res => {
           return res.json();
         })
@@ -27,7 +27,7 @@ const Home = (props) => {
           setUserData(json);
           console.log(json);
         });
-      fetch(`https://api.jikan.moe/v3/user/${username}/animelist`)
+      fetch(`https://api.jikan.moe/v4/users/${username}/statistics`)
       .then(res => res.json())
       .then(json => {
         setAnimeData(json);
@@ -53,7 +53,7 @@ const Home = (props) => {
         <Link href='/'>
           <a>Find another user</a>
         </Link>
-        <BasicInfo userData={userData}></BasicInfo>
+        <BasicInfo userData={userData.data} animeData={animeData.data}></BasicInfo>
       </main>
     )
   }

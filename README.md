@@ -7,7 +7,8 @@ mal-stats is a website that displays information about a MyAnimeList user.
 0. Make sure Node.js and npm are installed.
 1. Clone the mal-stats repository to your local drive.
 2. Switch to the mal-stats directory (`cd path_to_repo`)
-3. Run command `npm run dev` to launch the site on localhost (Port 3000).
+3. Run `npm i` to initialize project
+4. Run command `npm run dev` to launch the site on localhost (Port 3000).
 
 ## Usage
 

@@ -4,9 +4,16 @@ const createChart = config => {
 
     const {ctx, data} = config;
 
+    const options = {
+            legend: {
+                position: 'left'
+            }
+    }
+
     return new Chart(ctx, {
         type: 'doughnut',
-        data: data
+        data: data,
+        options: options
     });
 
 }
