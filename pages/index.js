@@ -19,7 +19,7 @@ const ColumnLayer = styled.div`
     height: 100vh;
     color: black;
     background-color: #2980b9;
-    font-family: 'Bangers';
+    font-family: 'Inter';
     flex-direction: row;
 `
 
@@ -30,11 +30,8 @@ const LeftCard = styled.div`
     height: 100vh;
     color: black;
     background-color: #2e51a2;
-    font-family: 'Bangers';
     flex-direction: column;
     width: 50%;
-    border-radius: 4px;
-    border: solid 1px;
 `
 
 const CoolContainer = styled.div`
@@ -44,11 +41,8 @@ const CoolContainer = styled.div`
     height: 100vh;
     color: black;
     background-color: white;
-    font-family: 'Bangers';
     flex-direction: column;
     width: 50%;
-    border-radius: 4px;
-    border: solid 1px;
 
     div {
         font-size: 3rem;
@@ -68,8 +62,9 @@ const CoolContainer = styled.div`
         box-sizing: border-box;
         border-radius: 4px;
         border: 0px;
-        background-color: #3498db;
+        background-color: #EEEEEE;
         text-align: center;
+        font-size: 1.5rem;
     }
 `
 
@@ -86,13 +81,14 @@ export default function Home({quoteData, characterData}) {
         <main>
             <Head>
                 <title>Homepage</title>
-                <link rel="preconnect" href="https://fonts.gstatic.com" />
-                <link href="https://fonts.googleapis.com/css2?family=Exo&display=swap" rel="stylesheet" />
+                <link rel="preconnect" href="https://fonts.googleapis.com" />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+                <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" /> 
             </Head>
             <ColumnLayer>
                 <LeftCard>
-                    <div>{quoteData.anime + ': ' + quoteData.quote + ' - ' + quoteData.character}</div>
-                    <CharacterInfo characterData={characterData} />
+                    <h1 style={{padding: '1rem'}}>{quoteData.quote}</h1>
+                    <CharacterInfo characterData={characterData} quoteAnime={quoteData.anime}/>
                 </LeftCard>
                 <CoolContainer>
                     <Layout>
@@ -104,7 +100,10 @@ export default function Home({quoteData, characterData}) {
                                     query: { id: username }
                                 });
                             }}>
-                            <label htmlFor='username'>Enter Your MyAnimeList Username</label>
+                            {/* TODO: Replace CDN link with local image */}
+                            <img style={{'border-radius': '50%', width: '30%'}} src="https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png" alt="avatar" />
+                            <label htmlFor='username'>mal-stats</label>
+                            <a>Enter Your MyAnimeList Username</a>
                             <input type="text" name="username" autoComplete="off" onChange={handleChange} />
                         </form>
                     </Layout>
