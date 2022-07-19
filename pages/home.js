@@ -42,7 +42,7 @@ const Home = (props) => {
   }, []);
   
 
-  if (!userData) {
+  if (!userData || !animeData) {
     return <div>Loading data...</div>
   } else {
     return (
