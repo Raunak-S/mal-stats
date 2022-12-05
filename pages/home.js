@@ -4,6 +4,15 @@ import Link from "next/link";
 import Head from "next/head";
 import BasicInfo from "../components/BasicInfo"
 import Layout from "../components/Layout";
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+    body {
+        height: 100%;
+        margin: 0px;
+        background-color: #F6F8FA;
+    }
+`
 
 const Home = (props) => {
   
@@ -15,6 +24,7 @@ const Home = (props) => {
   // const username = router.query.id;
   // console.log(router.query)
 
+  // TODO: combine both API calls into one, /users/{username}/full gets users info + statistics
   const getUserData = (username) => {
     if (username === undefined) {
       setUserData(null);
@@ -47,6 +57,7 @@ const Home = (props) => {
   } else {
     return (
       <main>
+        <GlobalStyle />
         <Head>
           <title>Anime-ted | {username}</title>
         </Head>
