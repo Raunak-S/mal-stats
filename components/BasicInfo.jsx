@@ -36,7 +36,7 @@ const StyledContainer = styled.div`
 	}
 `
 const UserProfileHeader = styled(StyledContainer)`
-	height: 60%;
+	height: 100vh;
 	width: 100%;
 	background-color: #1A1E22;
 	color: white;
@@ -52,6 +52,18 @@ const AboutContainer = styled.div`
 	text-align: center;
 `
 
+const InfoCard = styled.div`
+    display: flex;
+	flex-direction: column;
+    width: 40vh;
+    height: 20vh;
+	border-radius: 1.5rem;
+	margin: 0.5rem;
+	background-color: #24292E;
+	align-items: center;
+	justify-content: center;
+`
+
 const BasicInfo = ({userData, animeData}) => {
 
   const imageURL = userData.images.jpg.image_url ? userData.images.jpg.image_url : 'https://cdn.myanimelist.net/r/76x120/images/questionmark_50.gif?s=8e0400788aa6af2a2f569649493e2b0f';
@@ -59,13 +71,27 @@ const BasicInfo = ({userData, animeData}) => {
   return (
 	<StyledContainer>
 		<UserProfileHeader>
-		<img className='pfp' src={imageURL} style={{borderRadius: '50%', border: '0.5rem solid blue', marginBottom: '0.5rem'}} />
-		<h1>{userData.username}</h1>
-		<StyledContainer style={{flexDirection: 'row'}}>
-			<span className='location' style={{margin: '0px 1rem 0.5rem'}} >Location: {userData.location ? userData.location : 'N/A'}</span>
-			<span className='joined' style={{margin: '0px 1rem 0.5rem'}} >Joined: {new Date(userData.joined).toDateString()}</span>
-		</StyledContainer>
-		<div className='lastonline'>Last Online: {new Date(userData.last_online).toString()}</div>
+			<img className='pfp' src={imageURL} style={{borderRadius: '50%', border: '0.5rem solid blue', marginBottom: '0.5rem'}} />
+			<h1>{userData.username}</h1>
+			<StyledContainer style={{flexDirection: 'row', marginBottom: '0.5rem'}}>
+				<span className='location' style={{margin: '0px 1rem 0.5rem'}} >Location: {userData.location ? userData.location : 'N/A'}</span>
+				<span className='joined' style={{margin: '0px 1rem 0.5rem'}} >Joined: {new Date(userData.joined).toDateString()}</span>
+			</StyledContainer>
+			<StyledContainer style={{flexDirection: 'row'}}>
+				{/* TODO: Implement receiving/displaying the following InfoCard info (recommendations, clubs, reviews) */}
+				<InfoCard>
+					<span>0</span>
+					<span>REVIEWS</span>
+				</InfoCard>
+				<InfoCard>
+					<span>0</span>
+					<span>RECOMMENDATIONS</span>
+				</InfoCard>
+				<InfoCard>
+					<span>0</span>
+					<span>CLUBS</span>
+				</InfoCard>
+			</StyledContainer>
 		</UserProfileHeader>
 	{/* TODO: Replace userData.about with separate call, about section is no longer sent with receiving userData */}
 	{	userData && userData.about && 
