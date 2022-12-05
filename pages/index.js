@@ -82,7 +82,7 @@ export default function Home({quoteData, characterData}) {
             <Head>
                 <title>Homepage</title>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
                 <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" /> 
             </Head>
             <ColumnLayer>
@@ -101,7 +101,7 @@ export default function Home({quoteData, characterData}) {
                                 });
                             }}>
                             {/* TODO: Replace CDN link with local image */}
-                            <img style={{'border-radius': '50%', width: '30%'}} src="https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png" alt="avatar" />
+                            <img style={{'borderRadius': '50%', width: '30%'}} src="https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png" alt="avatar" />
                             <label htmlFor='username'>mal-stats</label>
                             <a>Enter Your MyAnimeList Username</a>
                             <input type="text" name="username" autoComplete="off" onChange={handleChange} />
