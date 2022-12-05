@@ -1,7 +1,8 @@
 import React, {useEffect, useRef} from "react";
 import Layout from "./Layout"
 import styled from "styled-components";
-import ChartWrapper from "./ChartWrapper"
+import ChartWrapper from "./ChartWrapper";
+import CardContainer from "./CardContainer";
 
 // about
 // anime_stats
@@ -34,6 +35,13 @@ const StyledContainer = styled.div`
 		font-weight: bold;
 	}
 `
+const UserProfileHeader = styled(StyledContainer)`
+	height: 60%;
+	width: 100%;
+	background-color: #1A1E22;
+	color: white;
+`
+
 const AboutContainer = styled.div`
 	width: 800px;
     padding: 0 1rem;
@@ -50,16 +58,24 @@ const BasicInfo = ({userData, animeData}) => {
 	
   return (
 	<StyledContainer>
-		<img className='pfp' src={imageURL} />
-		<div className='username'>{userData.username}</div>
-		<div className='joined'>Joined: {new Date(userData.joined).toString()}</div>
+		<UserProfileHeader>
+		<img className='pfp' src={imageURL} style={{borderRadius: '50%', border: '0.5rem solid blue', marginBottom: '0.5rem'}} />
+		<h1>{userData.username}</h1>
+		<StyledContainer style={{flexDirection: 'row'}}>
+			<span className='location' style={{margin: '0px 1rem 0.5rem'}} >Location: {userData.location ? userData.location : 'N/A'}</span>
+			<span className='joined' style={{margin: '0px 1rem 0.5rem'}} >Joined: {new Date(userData.joined).toDateString()}</span>
+		</StyledContainer>
 		<div className='lastonline'>Last Online: {new Date(userData.last_online).toString()}</div>
+		</UserProfileHeader>
+	{/* TODO: Replace userData.about with separate call, about section is no longer sent with receiving userData */}
 	{	userData && userData.about && 
 	  	<AboutContainer>
 			About: 
 			<div dangerouslySetInnerHTML={{__html: userData.about}} />
 		</AboutContainer>   
 	}
+	{/* TODO: Implement CardContainer which includes anime and manga list data
+	<CardContainer></CardContainer> */}
 	<ChartWrapper animeData={animeData.anime} mangaData={animeData.manga} />
 	</StyledContainer>
   )
