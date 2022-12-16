@@ -1,7 +1,6 @@
 import React, {useEffect, useRef} from "react";
 import Layout from "./Layout"
 import styled from "styled-components";
-import ChartWrapper from "./ChartWrapper";
 import CardContainer from "./CardContainer";
 
 // about
@@ -29,17 +28,67 @@ const StyledContainer = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-
-	div.username {
-		font-size: 2rem;
-		font-weight: bold;
-	}
 `
 const UserProfileHeader = styled(StyledContainer)`
-	height: 60vh;
-	width: 100%;
+	margin-bottom: 30px;
 	background-color: #1A1E22;
 	color: white;
+	padding: 3rem 5rem 10rem;
+
+	.pfp {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-bottom: 1.5rem;
+		border: 0.5rem solid blue; 
+		border-radius: 100%;
+		height: 150px;
+		width: 150px;
+
+		img {
+			border-radius: 100%;
+			max-width: 100%;
+		}
+	}
+
+	.info {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+
+		&__item {
+			margin: 0px 1rem 0.5rem
+		}
+	}
+
+	.stats {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(100px, 180px));
+		grid-gap: 0.5rem;
+		justify-content: center;
+		margin-top: 2rem;
+
+		&__item {
+			display: flex;
+			flex-direction: column;
+			border-radius: 0.25rem;
+			padding: 1rem;
+			background-color: #24292E;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.num {
+			font-size: 1.5rem;
+		}
+
+		.num-label {
+			font-size: 0.75rem;
+			letter-spacing: 1px;
+			margin-top: 0.75rem;
+		}
+	}
 `
 
 const AboutContainer = styled.div`
@@ -52,59 +101,45 @@ const AboutContainer = styled.div`
 	text-align: center;
 `
 
-const InfoCard = styled.div`
-    display: flex;
-	flex-direction: column;
-    width: 20vh;
-    height: 10vh;
-	border-radius: 1.5rem;
-	margin: 0.5rem;
-	background-color: #24292E;
-	align-items: center;
-	justify-content: center;
-	font-size: 0.75rem;
-`
-
 const BasicInfo = ({userData, animeData}) => {
 
   const imageURL = userData.images.jpg.image_url ? userData.images.jpg.image_url : 'https://cdn.myanimelist.net/r/76x120/images/questionmark_50.gif?s=8e0400788aa6af2a2f569649493e2b0f';
 	
   return (
-	<>
-		<UserProfileHeader>
-			<img className='pfp' src={imageURL} style={{borderRadius: '50%', border: '0.5rem solid blue', marginBottom: '0.5rem'}} />
-			<h1>{userData.username}</h1>
-			<StyledContainer style={{flexDirection: 'row', marginBottom: '0.5rem'}}>
-				<span className='location' style={{margin: '0px 1rem 0.5rem'}} >Location: {userData.location ? userData.location : 'N/A'}</span>
-				<span className='joined' style={{margin: '0px 1rem 0.5rem'}} >Joined: {new Date(userData.joined).toDateString()}</span>
-			</StyledContainer>
-			<StyledContainer style={{flexDirection: 'row'}}>
-				{/* TODO: Implement receiving/displaying the following InfoCard info (recommendations, clubs, reviews) */}
-				<InfoCard>
-					<span>0</span>
-					<span>REVIEWS</span>
-				</InfoCard>
-				<InfoCard>
-					<span>0</span>
-					<span>RECOMMENDATIONS</span>
-				</InfoCard>
-				<InfoCard>
-					<span>0</span>
-					<span>CLUBS</span>
-				</InfoCard>
-			</StyledContainer>
-		</UserProfileHeader>
-	{/* TODO: Replace userData.about with separate call, about section is no longer sent with receiving userData */}
-	{	userData && userData.about && 
-	  	<AboutContainer>
-			About: 
-			<div dangerouslySetInnerHTML={{__html: userData.about}} />
-		</AboutContainer>   
-	}
-	{/* TODO: Implement CardContainer which includes anime and manga list data
-	<CardContainer></CardContainer> */}
-	<ChartWrapper animeData={animeData.anime} mangaData={animeData.manga} />
-	</>
+	<UserProfileHeader>
+		<div className="pfp">
+			<img src={imageURL} alt="avatar" />
+		</div>
+		<h1>{userData.username}</h1>
+		<div className="info">
+			<span className='info__item'>Location: {userData.location ? userData.location : 'N/A'}</span>
+			<span className='info__item'>Joined: {new Date(userData.joined).toDateString()}</span>
+		</div>
+		<div className="stats">
+			{/* TODO: Implement receiving/displaying the following InfoCard info (recommendations, clubs, reviews) */}
+			<div className="stats__item">
+				<span className="num">0</span>
+				<span className="num-label">REVIEWS</span>
+			</div>
+			<div className="stats__item">
+				<span className="num">0</span>
+				<span className="num-label">RECOMMENDATIONS</span>
+			</div>
+			<div className="stats__item">
+				<span className="num">0</span>
+				<span className="num-label">CLUBS</span>
+			</div>
+		</div>
+	</UserProfileHeader>
+	// {/* TODO: Replace userData.about with separate call, about section is no longer sent with receiving userData */}
+	// {/* {	userData && userData.about && 
+	//   	<AboutContainer>
+	// 		About: 
+	// 		<div dangerouslySetInnerHTML={{__html: userData.about}} />
+	// 	</AboutContainer>   
+	// } */}
+	// {/* TODO: Implement CardContainer which includes anime and manga list data
+	// <CardContainer></CardContainer> */}
   )
 }
 
