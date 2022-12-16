@@ -36,7 +36,7 @@ const StyledContainer = styled.div`
 	}
 `
 const UserProfileHeader = styled(StyledContainer)`
-	height: 100vh;
+	height: 60vh;
 	width: 100%;
 	background-color: #1A1E22;
 	color: white;
@@ -55,13 +55,14 @@ const AboutContainer = styled.div`
 const InfoCard = styled.div`
     display: flex;
 	flex-direction: column;
-    width: 40vh;
-    height: 20vh;
+    width: 20vh;
+    height: 10vh;
 	border-radius: 1.5rem;
 	margin: 0.5rem;
 	background-color: #24292E;
 	align-items: center;
 	justify-content: center;
+	font-size: 0.75rem;
 `
 
 const BasicInfo = ({userData, animeData}) => {
@@ -69,7 +70,7 @@ const BasicInfo = ({userData, animeData}) => {
   const imageURL = userData.images.jpg.image_url ? userData.images.jpg.image_url : 'https://cdn.myanimelist.net/r/76x120/images/questionmark_50.gif?s=8e0400788aa6af2a2f569649493e2b0f';
 	
   return (
-	<StyledContainer>
+	<>
 		<UserProfileHeader>
 			<img className='pfp' src={imageURL} style={{borderRadius: '50%', border: '0.5rem solid blue', marginBottom: '0.5rem'}} />
 			<h1>{userData.username}</h1>
@@ -103,7 +104,7 @@ const BasicInfo = ({userData, animeData}) => {
 	{/* TODO: Implement CardContainer which includes anime and manga list data
 	<CardContainer></CardContainer> */}
 	<ChartWrapper animeData={animeData.anime} mangaData={animeData.manga} />
-	</StyledContainer>
+	</>
   )
 }
 

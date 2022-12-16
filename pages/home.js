@@ -61,9 +61,6 @@ const Home = (props) => {
         <Head>
           <title>Anime-ted | {username}</title>
         </Head>
-        <Link href='/'>
-          <a>Find another user</a>
-        </Link>
         <BasicInfo userData={userData.data} animeData={animeData.data}></BasicInfo>
       </main>
     )

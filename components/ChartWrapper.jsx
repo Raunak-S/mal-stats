@@ -27,6 +27,8 @@ animeData Prototype
 const ChartCards = styled.div`
     display: flex;
     flex-direction: row;
+    margin-top: -8rem;
+    justify-content: center;
 `
 
 const Card = styled.div`
