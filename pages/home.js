@@ -5,10 +5,10 @@ import Head from "next/head";
 import BasicInfo from "../components/BasicInfo"
 import Layout from "../components/Layout";
 import { createGlobalStyle } from "styled-components";
+import ChartWrapper from "../components/ChartWrapper";
 
 const GlobalStyle = createGlobalStyle`
     body {
-        height: 100%;
         margin: 0px;
         background-color: #F6F8FA;
     }
@@ -62,6 +62,7 @@ const Home = (props) => {
           <title>Anime-ted | {username}</title>
         </Head>
         <BasicInfo userData={userData.data} animeData={animeData.data}></BasicInfo>
+        <ChartWrapper animeData={animeData.data.anime} mangaData={animeData.data.manga} />
       </main>
     )
   }
