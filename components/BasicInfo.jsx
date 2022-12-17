@@ -2,6 +2,7 @@ import React, {useEffect, useRef} from "react";
 import Layout from "./Layout"
 import styled from "styled-components";
 import CardContainer from "./CardContainer";
+import Link from "next/link";
 
 // about
 // anime_stats
@@ -34,6 +35,12 @@ const UserProfileHeader = styled(StyledContainer)`
 	background-color: #1A1E22;
 	color: white;
 	padding: 3rem 5rem 10rem;
+
+	.link {
+		position: absolute;
+		margin-left: -90%;
+		margin-top: -25%;
+	}
 
 	.pfp {
 		display: flex;
@@ -107,6 +114,9 @@ const BasicInfo = ({userData, animeData}) => {
 	
   return (
 	<UserProfileHeader>
+		<span className="link">
+			<Link href="/">Find Another User</Link>
+		</span>
 		<div className="pfp">
 			<img src={imageURL} alt="avatar" />
 		</div>

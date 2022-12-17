@@ -1,6 +1,5 @@
 import React, { useState, useEffect, Component } from "react";
 import PropTypes from 'prop-types';
-import Link from "next/link";
 import Head from "next/head";
 import BasicInfo from "../components/BasicInfo"
 import Layout from "../components/Layout";
