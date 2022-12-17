@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
     }
 `
 
-const Home = (props) => {
+const User = (props) => {
   
   const [userData, setUserData] = useState(null);
   const [animeData, setAnimeData] = useState(null);
@@ -75,4 +75,4 @@ export async function getServerSideProps(context) {
 }
 
 
-export default Home;
+export default User;

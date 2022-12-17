@@ -70,7 +70,7 @@ const CoolContainer = styled.div`
 
 // TODO: Create quote component for random anime quote (have links for character and anime)
 
-export default function Home({quoteData, characterData}) {
+export default function User({quoteData, characterData}) {
     const [username, setUsername] = useState("");
     const handleChange = e => setUsername(e.target.value);
 
@@ -96,7 +96,7 @@ export default function Home({quoteData, characterData}) {
                             onSubmit={e => {
                                 e.preventDefault();
                                 Router.push({
-                                    pathname: 'home',
+                                    pathname: 'user',
                                     query: { id: username }
                                 });
                             }}>
