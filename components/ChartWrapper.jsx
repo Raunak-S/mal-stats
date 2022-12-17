@@ -30,10 +30,12 @@ const ChartCards = styled.div`
     margin-top: -8rem;
     justify-content: center;
 
-    .cards {
-        border: 2px solid black;
+    .card {
+        border-radius: 0.25rem;
+        background-color: white;
         margin: 2rem;
         padding: 1rem;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 30px -15px;
     }
 `
 
@@ -45,7 +47,7 @@ const ChartWrapper = ({animeData, mangaData}) => {
     const initAnimeChart = canvasRef => {
         const {completed, dropped, on_hold, plan_to_watch, watching} = animeData;
         const config = {
-            type: 'doughnut',
+            type: 'pie',
             data: {
                 datasets: [{
                     data: [
@@ -67,7 +69,8 @@ const ChartWrapper = ({animeData, mangaData}) => {
             },
             options: {
                 legend: {
-                    position: 'bottom',
+                    position: 'right',
+                    align: 'start',
                 },
                 responsive: false,
             }
@@ -118,10 +121,12 @@ const ChartWrapper = ({animeData, mangaData}) => {
 
     return (
         <ChartCards>
-            <div className="cards">
+            <div className="card">
+                <h2>Anime Statistics</h2>
                 <canvas height={chartSize} width={chartSize} ref={animeCanvas} />
             </div>
-            <div className="cards">
+            <div className="card">
+                <h2>Manga Statistics</h2>
                 <canvas ref={mangaCanvas} />
             </div>
         </ChartCards>
