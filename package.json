@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "next",
-    "server": "node api/api.js"
+    "server": "ts-node api/api.ts"
   },
   "author": "Raunak-S",
   "license": "MIT",
@@ -24,6 +24,7 @@
     "@types/node": "^18.6.3",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
+    "ts-node": "^10.9.1",
     "typescript": "^4.7.4"
   }
 }
