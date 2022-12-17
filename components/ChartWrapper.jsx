@@ -29,14 +29,12 @@ const ChartCards = styled.div`
     flex-direction: row;
     margin-top: -8rem;
     justify-content: center;
-`
 
-const Card = styled.div`
-    height: 600px;
-    width: 600px;
-    border: 2px solid black;
-    margin: 2rem;
-    padding: 1rem;
+    .cards {
+        border: 2px solid black;
+        margin: 2rem;
+        padding: 1rem;
+    }
 `
 
 const ChartWrapper = ({animeData, mangaData}) => {
@@ -46,62 +44,71 @@ const ChartWrapper = ({animeData, mangaData}) => {
 
     const initAnimeChart = canvasRef => {
         const {completed, dropped, on_hold, plan_to_watch, watching} = animeData;
-        const data = {
-            datasets: [{
-                data: [
-                    completed,
-                    dropped,
-                    on_hold,
-                    plan_to_watch,
-                    watching
+        const config = {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [
+                        completed,
+                        dropped,
+                        on_hold,
+                        plan_to_watch,
+                        watching
+                    ],
+                    backgroundColor: ['red','yellow','blue','green','purple']
+                }],
+                labels: [
+                    'Completed',
+                    'Dropped',
+                    'On Hold',
+                    'Plan to Watch',
+                    'Watching'
                 ],
-                backgroundColor: ['red','yellow','blue','green','purple']
-            }],
-            labels: [
-                'Completed',
-                'Dropped',
-                'On Hold',
-                'Plan to Watch',
-                'Watching'
-            ],
+            },
             options: {
-                responsive: false
+                legend: {
+                    position: 'bottom',
+                },
+                responsive: false,
             }
         };
         const ctx = canvasRef.current.getContext('2d');
         
-        const config = {ctx, data};
-        createChart(config);
+        const chartConfig = {ctx, config};
+        createChart(chartConfig);
     };
 
     const initMangaChart = canvasRef => {
         const {completed, dropped, on_hold, plan_to_read, reading} = mangaData;
-        const data = {
-            datasets: [{
-                data: [
-                    completed,
-                    dropped,
-                    on_hold,
-                    plan_to_read,
-                    reading
+        const config = {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [
+                        completed,
+                        dropped,
+                        on_hold,
+                        plan_to_read,
+                        reading
+                    ],
+                    backgroundColor: ['red','yellow','blue','green','purple']
+                }],
+                labels: [
+                    'Completed',
+                    'Dropped',
+                    'On Hold',
+                    'Plan to Read',
+                    'Reading'
                 ],
-                backgroundColor: ['red','yellow','blue','green','purple']
-            }],
-            labels: [
-                'Completed',
-                'Dropped',
-                'On Hold',
-                'Plan to Read',
-                'Reading'
-            ],
+            },
             options: {
                 responsive: false
             }
         };
         const ctx = canvasRef.current.getContext('2d');
         
-        const config = {ctx, data};
-        createChart(config);
+        const chartConfig = {ctx, config};
+        createChart(chartConfig);
     };
   
     useEffect(() => {
@@ -111,12 +118,12 @@ const ChartWrapper = ({animeData, mangaData}) => {
 
     return (
         <ChartCards>
-            <Card>
-                <canvas ref={animeCanvas} />
-            </Card>
-            <Card>
+            <div className="cards">
+                <canvas height={chartSize} width={chartSize} ref={animeCanvas} />
+            </div>
+            <div className="cards">
                 <canvas ref={mangaCanvas} />
-            </Card>
+            </div>
         </ChartCards>
     )
 }

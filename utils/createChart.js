@@ -1,20 +1,10 @@
 
 
-const createChart = config => {
+const createChart = chartConfig => {
 
-    const {ctx, data} = config;
+    const {ctx, config} = chartConfig;
 
-    const options = {
-            legend: {
-                position: 'left'
-            }
-    }
-
-    return new Chart(ctx, {
-        type: 'doughnut',
-        data: data,
-        options: options
-    });
+    return new Chart(ctx, config);
 
 }
 
