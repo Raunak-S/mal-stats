@@ -19,3 +19,7 @@ mal-stats is a website that displays information about a MyAnimeList user.
 
 - [ ] Display Basic Profile Statistics
 - [ ] Infinite Scrolling Banner of Favorites (Anime, Manga, People)
+
+## Reference
+
+Heavily inspired by the [OctoProfile](https://github.com/bchiang7/octoprofile) project, go over and take a look!
