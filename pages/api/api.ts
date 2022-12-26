@@ -1,5 +1,6 @@
 import axios, { AxiosPromise, AxiosRequestConfig, AxiosResponse } from "axios";
 import express, { Request } from "express";
+import { NextApiRequest, NextApiResponse } from "next";
 const config = require("../credentials.json");
 
 const malApiUrl: string = "https://api.myanimelist.net/v2";
@@ -115,3 +116,12 @@ function getAllPaginatedResults(url: string): Promise<string[]> {
 app.listen(3001, () => {
     console.log("Listening on port 3001");
 })
+
+function handler(request: NextApiRequest, response: NextApiResponse) {
+    response.status(200).json({
+        body: 'this is a test',
+        query: request.query
+    })
+}
+
+export default handler;
