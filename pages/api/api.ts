@@ -1,7 +1,6 @@
 import axios, { AxiosPromise, AxiosRequestConfig, AxiosResponse } from "axios";
 import express, { Request } from "express";
 import { NextApiRequest, NextApiResponse } from "next";
-const config = require("../credentials.json");
 
 const malApiUrl: string = "https://api.myanimelist.net/v2";
 const jikanApiUrl: string = "https://api.jikan.moe/v4";
@@ -86,7 +85,7 @@ function getAnimeList(username: string): AxiosPromise {
     
     return axios.get(`${malApiUrl}/users/${encodeURIComponent(username)}/animelist?fields=list_status,synopsis`, {
         headers: {
-            'X-MAL-CLIENT-ID': config["X-MAL-CLIENT-ID"],
+            'X-MAL-CLIENT-ID': process.env.MAL_CLIENT_ID,
         }
     });
 }
