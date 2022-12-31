@@ -119,7 +119,7 @@ function getAnimeList(username: string): AxiosPromise {
 function handler(request: NextApiRequest, response: NextApiResponse) {
     getAnimeList(request.query.user as string)
         .then(res => {
-           response.status(200).json(res) 
+           response.status(200).json(JSON.stringify(res)) 
         });
 }
 
