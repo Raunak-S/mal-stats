@@ -81,15 +81,6 @@ app.get('/getUserStatistics', (req: Request, res: any) => {
     });
 });
 
-function getAnimeList(username: string): AxiosPromise {
-    
-    return axios.get(`${malApiUrl}/users/${encodeURIComponent(username)}/animelist?fields=list_status,synopsis`, {
-        headers: {
-            'X-MAL-CLIENT-ID': process.env.MAL_CLIENT_ID,
-        }
-    });
-}
-
 function getAllPaginatedResults(url: string): Promise<string[]> {
     return new Promise(async resolve => {
         let results: string[] = [];
@@ -116,11 +107,20 @@ app.listen(3001, () => {
     console.log("Listening on port 3001");
 })
 
+function getAnimeList(username: string): AxiosPromise {
+    
+    return axios.get(`${malApiUrl}/users/${encodeURIComponent(username)}/animelist?fields=list_status,synopsis`, {
+        headers: {
+            'X-MAL-CLIENT-ID': process.env.MAL_CLIENT_ID,
+        }
+    });
+}
+
 function handler(request: NextApiRequest, response: NextApiResponse) {
-    response.status(200).json({
-        body: 'this is a test',
-        query: request.query
-    })
+    getAnimeList(request.query.user as string)
+        .then(res => {
+           response.status(200).json(res) 
+        });
 }
 
 export default handler;
