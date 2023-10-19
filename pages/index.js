@@ -116,7 +116,7 @@ export default function User({quoteData, characterData}) {
 }
 
 export async function getStaticProps() {
-    const quoteData = await fetch(`https://animechan.vercel.app/api/random`)
+    const quoteData = await fetch(`https://animechan.xyz/api/random`)
     .then(res => {
         return res.json();
     })

@@ -4,10 +4,6 @@ import styled from "styled-components";
 import Chart from "chart.js";
 import createChart from "../utils/createChart"
 
-const Canvas = styled.canvas`
-    height: 500px !important;
-    width: 500px !important;
-`
 /*
 animeData Prototype
 {

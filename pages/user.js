@@ -17,6 +17,7 @@ const User = (props) => {
   
   const [userData, setUserData] = useState(null);
   const [animeData, setAnimeData] = useState(null);
+  const [userStatistics, setUserStatistics] = useState(null);
   const username = props.data.id;
 
   // const router = useRouter();
@@ -41,7 +42,15 @@ const User = (props) => {
       .then(json => {
         setAnimeData(json);
         console.log(json);
-      })
+      });
+      fetch(`https://api.jikan.moe/v4/users/${username}/animelist`)
+        .then(res => {
+          return res.json();
+        })
+        .then(json => {
+          setUserStatistics(json);
+          console.log(json);
+        });
     }
   }
 
@@ -62,6 +71,7 @@ const User = (props) => {
         </Head>
         <BasicInfo userData={userData.data} animeData={animeData.data}></BasicInfo>
         <ChartWrapper animeData={animeData.data.anime} mangaData={animeData.data.manga} />
+        <div> {JSON.stringify(userStatistics)} </div>
       </main>
     )
   }

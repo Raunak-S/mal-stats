@@ -23,3 +23,7 @@ mal-stats is a website that displays information about a MyAnimeList user.
 ## Reference
 
 Heavily inspired by the [OctoProfile](https://github.com/bchiang7/octoprofile) project, go over and take a look!
+
+## Tools Used
+
+0. https://github.com/rocktimsaikia/anime-chan
